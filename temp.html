@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="container"
+      class="h-[200px] w-[400px] bg-[#f4f4f5] rounded-2xl m-auto mt-10 flex flex-col"
+    >
+      <div id="ac_mode" class="flex flex-row justify-between p-2 m-2">
+        <div id="ac_first" class="flex justify-between w-[70px] items-center">
+          <div id="ac_title" class="text-4xl">A/C</div>
+          <div id="ac_mode_off">OFF</div>
+        </div>
+        <div id="ac_mode_auto">AUTO</div>
+      </div>
+      <div id="fan_speed" class="bg-gray-500 m-2 p-2">
+        <div>Fan</div>
+        <div id="fan_config" class="flex items-center">
+          <iconify-icon
+            icon="mingcute:fan-fill"
+            width="30"
+            height="30"
+          ></iconify-icon>
+          <div id="btn_fan_group" class="flex justify-between grow px-2 py-1">
+            <div class="btn_fan">1</div>
+            <div class="btn_fan">2</div>
+            <div class="btn_fan">3</div>
+            <div class="btn_fan">4</div>
+            <div class="btn_fan">5</div>
+          </div>
+        </div>
+      </div>
+      <div id="temperature_degree" class="bg-gray-500 m-2 p-2">
+        <div>Temperature</div>
+        <div id="temp_config" class="flex justify-center items-center">
+          <div id="temp_number" class="px-2">20c</div>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="20"
+            class="slider grow rounded-3xl bg-sky-100"
+            id="myRange">
+        </div>
+      </div>
+    </div>
+  </body>
+  <style>
+    .btn_fan {
+      background-color: aqua;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 7px;
+      background: linear-gradient(55deg, #7dd3fc 0%, #22d3ee 51%, #fdba74 85%);
+      cursor: pointer;
+      border: 0;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 23px;
+      height: 25px;
+      background: url("water.svg");
+      cursor: pointer;
+      display: flex;
+      color: aliceblue;
+    }
+  </style>
+</html>
