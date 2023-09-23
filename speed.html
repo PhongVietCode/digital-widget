@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  </head>
+
+  <body>
+    <div
+      id="mainContainer"
+      class="w-screen h-screen rounded relative flex justify-center items-center overflow-hidden bg-[#292627]"
+    >
+      <!-- speed div -->
+      <div
+        id="speed_container" 
+        class="w-[600px] h-[200px] bg-gradient-to-b from-[rgba(40,36,38,1)] to-[rgba(40,36,38,0.95)] absolute top-0 flex flex-row z-10 
+        drop-shadow-[0_55px_50px_rgba(0,0,0,0.7)] rounded-2xl overflow-hidden "
+      >
+        <div class="hidden w-1/2 bg-[rgba(255,255,255,0.2)] h-[10px] absolute self-end ml-[155px] mb-[10px]
+                    drop-shadow-[0_-11px_30px_rgba(255,255,255,1)] rounded">
+        </div>
+        <!-- start -->
+        <div
+          id="fuel"
+          class="w-1/4 h-[100px] top-0 flex flex-col justify-center items-center mt-4"
+        >
+          <iconify-icon
+            icon="mdi:speedometer"
+            width="90"
+            height="90"
+            style="color: #60a5fa"
+          ></iconify-icon>
+          <div id="fuel_level" class="font-bold text-4xl text-white"
+              vss='true'
+              vss-name='Vehicle.OBD.FuelLevel'
+              ></div>
+        </div>
+        <!-- middle -->
+        <div class="w-2/4 h-inherit ">
+          <div
+            id="speed_counter"
+            class="font-bold text-9xl text-white text-center"
+            vss="true"
+            vss-name="Vehicle.ADAS.CruiseControl.SpeedSet"
+          >
+          
+          </div>
+          <div
+            id=" speed_unit"
+            class="italic text-2xl text-sky-200 text-center"
+          >
+            km/h
+          </div>
+        </div>
+        <!-- end -->
+        <div
+          id="icon_speed"
+          class="w-1/4 h-[100px] top-0 flex flex-col items-center"
+        >
+          <iconify-icon
+            icon="mingcute:steering-wheel-fill"
+            width="90"
+            height="90"
+            class="mt-2"
+            style="color: #60a5fa"
+          ></iconify-icon>
+          <div class="text-white font-bold mt-2"> P N D R</div>
+        </div>
+      </div>
+      <!-- ========================================== -->
+      <!-- road div -->
+      <div
+        class="w-0 h-screen border-l-[520px] border-l-transparent border-b-[800px] border-b-gray-900 border-r-[520px] border-r-transparent flex justify-center relative">
+        <div
+          class="w-0 h-screen border-l-[510px] border-l-transparent border-b-[800px] border-b-gray-600 border-r-[510px] border-r-transparent flex justify-center relative"
+        >
+          <!-- road -->
+          <div
+            id="big_road"
+            class="w-0 h-screen border-l-[500px] border-l-transparent border-b-[800px] border-b-[#312f34] border-r-[500px] border-r-transparent flex justify-center relative"
+          >
+            <div
+              id="small_road"
+              class="w-0 h-screen drop-shadow-[0_100px_90px_rgba(248,234,241,0.5)] 
+              border-l-[195px] border-l-transparent
+              border-b-[800px] border-b-gray-900 
+              border-r-[195px] border-r-transparent
+              relative drop-shadow-[0_25px_25px_rgba(245, 39, 145, 0.01)] flex justify-center"
+            >
+              <div class= "h-screen border-l-[190px] border-l-transparent
+                            border-b-[800px] border-b-sky-500
+                            border-r-[190px] border-r-transparent
+                            absolute flex justify-center">
+                  <div class="h-screen border-l-[180px] border-l-transparent
+                            border-b-[800px] border-b-gray-500
+                            border-r-[180px] border-r-transparent
+                            absolute flex justify-center">
+                    </div>
+              </div>
+
+          </div>
+          </div>
+          <!-- speed limit -->
+            <div
+            id="speed_limt"
+            class="w-[80px] h-[100px] bg-white flex-row rounded-xl absolute top-[350px] left-[-250px] fixed
+            drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)]"
+          >
+            <div class="text-[20px] text-center font-bold text-[#292627]">
+              SPEED LIMIT
+            </div>
+            <div class="text-center font-bold text-[#292627] -mt-[3px] text-4xl">
+              65
+            </div>
+          </div>  
+          
+      </div>  
+      </div>
+      <!-- ============================================ -->
+      <div id="lightBeam" class="w-[100px] h-[100px]
+        border-l-[250px] border-l-transparent 
+        border-t-[210px] border-t-[rgba(255,255,255,0.7)]
+        border-r-[250px] border-r-transparent
+        m-auto absolute 
+        bottom-[10px] blur-xl
+        ">
+
+      </div>
+      <!-- car div -->
+      <div
+        id="myCar"
+        class="bg-[url('car2.png')] w-[200px] h-[200px] 
+        bg-fit bg-no-repeat absolute m-auto bottom-[-40px]
+        drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)] z-20"
+        >
+        
+      </div>
+    </div>
+      <!-- ============================================ -->
+    </div>
+  </body>
+
+  <script>
+    let API_LIGHTBEAM = "Vehicle.Body.Lights.IsLowBeamOn"
+    let intervalLight = null
+    let lightBeam
+    function onWidgetLoaded(options) {
+      console.log("On table widget loaded")
+      console.log("options", options)
+
+      lightBeam = document.getElementById("lightBeam")
+      intervalLight = setInterval(()=>{
+        if(lightBeam){
+          let apiValue = true
+          console.log(apiValue +" type: " + typeof apiValue)
+          if(apiValue){
+            lightBeam.style.display = "block"
+          }
+          else{
+            lightBeam.style.display = "none"
+          }
+        }
+      },500)
+    }
+    function onWidgetUnloaded(options) {
+      console.log("On my widget unloaded")
+      if(intervalLight) clearInterval(intervalLight)
+    }
+    
+  </script>
+  <script defer src="https://bestudio.digitalauto.tech/project/BzR91b49OHqj/syncer.js"></script>
+
+  <style>
+    #shadow_box {
+      box-shadow: 10px 10px 5px lightblue;
+    }
+  </style>
+</html>
