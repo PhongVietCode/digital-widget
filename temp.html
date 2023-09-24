@@ -10,56 +10,77 @@
   <body>
     <div
       id="container"
-      class="h-[200px] w-[400px] bg-[#f4f4f5] rounded-2xl m-auto mt-10 flex flex-col"
+      class="h-[260px] w-[400px] bg-[#272727] rounded-2xl m-auto mt-10 flex flex-col"
     >
-      <div id="ac_mode" class="flex flex-row justify-between p-2 m-2">
-        <div id="ac_first" class="flex justify-between w-[70px] items-center">
+      <div
+        id="ac_mode"
+        class="flex flex-row justify-between items-center p-2 m-2 text-white"
+      >
+        <div id="ac_first" class="flex justify-between w-[100px] items-center">
           <div id="ac_title" class="text-4xl">A/C</div>
-          <div id="ac_mode_off">OFF</div>
+          <div
+            id="ac_mode_off"
+            class="bg-transparent px-4 ml-4 rounded-xl border-2 border-[#0d9488] hover:bg-[#0f766e] cursor:pointer"
+          >
+            OFF
+          </div>
         </div>
-        <div id="ac_mode_auto">AUTO</div>
+        <div
+          id="ac_mode_auto"
+          class="px-4 ml-2 rounded-xl border-2 border-[#2563eb] bg-[#2563eb] cursor:pointer"
+        >
+          AUTO
+        </div>
       </div>
-      <div id="fan_speed" class="bg-gray-500 m-2 p-2">
+      <div id="fan_speed" class="mx-2 my-1 p-2 text-white font-bold">
         <div>Fan</div>
         <div id="fan_config" class="flex items-center">
           <iconify-icon
             icon="mingcute:fan-fill"
-            width="30"
-            height="30"
+            width="40"
+            height="40"
+            class="ml-2 animate-spin"
+            id="icon_fan"
           ></iconify-icon>
           <div id="btn_fan_group" class="flex justify-between grow px-2 py-1">
-            <div class="btn_fan">1</div>
-            <div class="btn_fan">2</div>
-            <div class="btn_fan">3</div>
-            <div class="btn_fan">4</div>
-            <div class="btn_fan">5</div>
+            <div class="btn_fan fan1">1</div>
+            <div class="btn_fan fan2">2</div>
+            <div class="btn_fan fan3">3</div>
+            <div class="btn_fan fan4">4</div>
+            <div class="btn_fan fan5">5</div>
           </div>
         </div>
       </div>
-      <div id="temperature_degree" class="bg-gray-500 m-2 p-2">
+      <div id="temperature_degree" class="mx-2 my-1 p-2 text-white font-bold">
         <div>Temperature</div>
-        <div id="temp_config" class="flex justify-center items-center">
-          <div id="temp_number" class="px-2">20c</div>
+        <div
+          id="temp_config"
+          class="flex justify-start items-center m-2 relative"
+        >
+          <div id="temp_number" class="w-19 px-2 text-4xl">100c</div>
           <input
             type="range"
             min="1"
-            max="100"
+            max="50"
             value="20"
-            class="slider grow rounded-3xl bg-sky-100"
-            id="myRange">
+            class="slider rounded-3xl bg-sky-100 ml-2 w-64 right-0 absolute"
+            id="myRange"
+          />
         </div>
       </div>
     </div>
   </body>
   <style>
     .btn_fan {
-      background-color: aqua;
       border-radius: 50%;
       width: 40px;
       height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
+      border: solid 2px #38bdf8;
+      cursor: pointer;
+      user-select: none;
     }
     .slider {
       -webkit-appearance: none;
@@ -79,5 +100,98 @@
       display: flex;
       color: aliceblue;
     }
+    .ac_mode_off{
+      cursor: pointer;
+      user-select: none;
+    }
+    .ac_mode_auto{
+      cursor: pointer;
+      user-select: none;
+    }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
   </style>
+  <script>
+    let myRange;
+    let tempNumber;
+    let btnFanGroup;
+    let oldButton = null;
+    let fan1,fan2,fan3,fan4,fan5;
+    let modeOff;
+    let iconFan;
+    let modeAuto;
+    let isOn = true;
+    window.addEventListener("load", () => {
+      myRange = document.getElementById("myRange");
+      tempNumber = document.getElementById("temp_number");
+      btnFanGroup = document.getElementById("btn_fan_group");
+      modeOff = document.getElementById("ac_mode_off");
+      modeAuto = document.getElementById("ac_mode_auto");
+      fan1 = document.querySelector(".fan1")
+      fan2 = document.querySelector(".fan2")
+      fan3 = document.querySelector(".fan3")
+      fan4 = document.querySelector(".fan4")
+      fan5 = document.querySelector(".fan5")
+      iconFan = document.getElementById("icon_fan");
+      tempNumber.innerText = myRange.value + "c";
+      
+      myRange.addEventListener("change", () => {
+        tempNumber.innerText = myRange.value + "c";
+      });
+
+      btnFanGroup.addEventListener("click", (e) => {
+        changeFanButton(e.target.className.split(" ")[1]);
+      });
+      modeOff.addEventListener("click",() => {
+        iconFan.style.animation ="none";
+        modeAuto.style = "background-color: transparent"
+        modeOff.style = "background-color: #0f766e"
+      })
+      modeAuto.addEventListener("click",() => {
+        iconFan.style = "animation: spin 1s linear infinite;"
+        modeAuto.style = "background-color: none"
+        modeOff.style = "background-color: none"
+      });
+      const changeFanButton = (num) => {
+        switch (num) {
+          case "fan1":
+            setColor(fan1);
+            oldButton = fan1;
+            break;
+          case "fan2":
+            setColor(fan2);
+            oldButton = fan2;
+            break;
+          case "fan3":
+            setColor(fan3);
+            oldButton = fan3;
+            break;
+          case "fan4":
+            setColor(fan4);
+            oldButton = fan4;
+            break;
+          case "fan5":
+            setColor(fan5);
+            oldButton = fan5;
+            break;
+        }
+      };
+
+      const setColor = (newBtn) => {
+        if (oldButton != null)
+          oldButton.style = "background-color: transparent;";
+        newBtn.style = "background-color: #0ea5e9;transform: scale(1.2);";
+      };
+      // setting
+      changeFanButton('fan3');
+
+    });
+  </script>
 </html>
