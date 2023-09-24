@@ -8,14 +8,397 @@
     <title>hihi</title>
   </head>
   <body>
-    <div class="">
-      <div class="w-[600px] h-[600px] bg-gray-300 rounded-full m-10 flex">
+    <div class="relative flex">
+      <!-- main control -->
+      <div
+        id="main_control"
+        class="w-[150px] h-[400px] absolute z-10 self-center ml-6 flex flex-col 
+        justify-around rounded-tl-full
+        rounded-bl-full"
+      >
+        <div class="door_option control_option ml-[60px]">
+          <div>
+            <iconify-icon icon="mdi:car-door" width="40" height="40" style="color: white;" class="door_option"></iconify-icon>
+          </div>
+          <div class="door_option w-full text-center text-xl font-bold text-white ">Door</div>
+        </div>
+        <div class="light_option control_option ">
+          <div>
+            <iconify-icon icon="mdi:car-light-high" style="color: white;" width="40" height="40" class="light_option"></iconify-icon>
+          </div>
+          <div  class="light_option w-full text-center text-xl font-bold text-white ">Light</div>
+        </div>
+        <div class="tire_option control_option  ml-[60px] ">
+          <div>
+            <iconify-icon icon="game-icons:flat-tire" style="color: white;" width="40" height="40" class="tire_option"></iconify-icon>
+          </div>
+          <div class="w-full text-center text-xl font-bold text-white">Tire</div>
+        </div>
+
+      </div>
+      <!-- car container -->
+      <div
+        id="container_car"
+        class="relative w-[700px] h-[700px] bg-[#1a1c1e] opacity-90 rounded-full m-10 flex"
+      >
+        <!-- btn control -->
+        <div id="btnControl" class="hover:opacity-100 w-10 h-10 bg-sky-200 absolute self-center ml-[140px] rounded-full z-20 opacity-50"></div>
+        <!-- car model -->
         <div
-          class="bg-[url('lambo.png')] bg-contain w-[400px] h-[400px] m-auto rotate-[-90deg] bg-no-repeat bg-center mx-auto"
+          class="bg-[url('lambo.png')] bg-contain w-[500px] h-[500px] m-auto rotate-[-90deg] bg-no-repeat bg-center flex relative z-10"
+        ></div>
+        <!-- DOOR CONTROL -->
+        <div id="door_control" class="absolute w-full h-full flex z-10 flex">
+          <!-- hood -->
+          <div class="itemBubble top-[100px] left-[325px]">
+            <!-- <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-100"
+            ></span> -->
+            <div id="hood" class="itemBubble flex flex-col justify-center items-center">
+              <iconify-icon
+                icon="mingcute:lock-fill"
+                style="color: white"
+                width="30"
+                height="30"
+              ></iconify-icon>
+            </div>
+          </div>
+          <!-- left door -->
+          <div class="itemBubble left-[190px] self-center">
+            <!-- <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-100"
+            ></span> -->
+            <div
+              id="left_door"
+              class="itemBubble flex flex-col justify-center items-center"
+            >
+              <iconify-icon
+                icon="mingcute:lock-fill"
+                style="color: white"
+                width="30"
+                height="30"
+              ></iconify-icon>
+            </div>
+          </div>
+          <!-- right door -->
+          <div class="itemBubble right-[190px] self-center">
+            <!-- <span
+              class= "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-100"
+            ></span> -->
+            <div
+              id="right_door"
+              class=" itemBubble flex flex-col justify-center items-center"
+            >
+              <iconify-icon
+                icon="mingcute:unlock-fill"
+                style="color: white"
+                width="30"
+                height="30"
+              ></iconify-icon>
+            </div>
+          </div>
+          <!-- cabin -->
+          <div class="itemBubble left-[325px] bottom-[100px]">
+            <!-- <span
+              class=" itemBubble animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-100"
+            ></span> -->
+            <div
+              id="back_cabin"
+              class="itemBubble flex flex-col justify-center items-center"
+            >
+              <iconify-icon
+                icon="mingcute:lock-fill"
+                style="color: white"
+                width="30"
+                height="30"
+              ></iconify-icon>
+            </div>
+          </div>
+        </div>
+        <!-- LIGHT CONTROL -->
+        <div id="light_control" class="flex w-full h-full absolute overflow-hidden"
         >
-            
+          <div
+            id="top_light_right"
+            class="flex absolute top-0 right-[250px] border-l-[10px] border-l-transparent border-t-[400px] border-t-gray-200 border-r-[100px] border-r-transparent rotate-[10deg] blur-2xl"
+          ></div>
+          <div
+            id="top_light_left"
+            class="flex absolute top-[0px] left-[250px] border-l-[100px] border-l-transparent border-t-[400px] border-t-gray-200 border-r-[10px] border-r-transparent rotate-[-10deg] blur-2xl"
+          ></div>
+          <div
+            id="back_light_left"
+            class="flex absolute self-end bottom-[110px] left-[240px] blur-[15px] border-l-[40px] border-l-transparent border-b-[40px] border-b-red-800 border-r-[40px] border-r-transparent rotate-[30deg]"
+          ></div>
+          <div
+            id="back_ligh_right"
+            class="flex absolute self-end bottom-[110px] right-[240px] blur-[15px] border-l-[40px] border-l-transparent border-b-[30px] border-b-red-800 border-r-[40px] border-r-transparent rotate-[-30deg]"
+          ></div>
+        </div>
+        <!-- TIRE CONTROL -->
+        <div id="tire_control"
+          class="w-full h-full absolute flex flex-col items-center"
+        >
+          <div
+            class="flex flex-row justify-between w-[420px] h-[420px] mt-[70px]"
+          >
+            <div class="flex w-fit h-fit relative">
+              <!-- circle outside -->
+              <span
+                class="animate-ping absolute inline-flex h-[100px] w-[100px] rounded-full bg-red-400 opacity-100"
+              ></span>
+              <svg
+                class="absolute z-20 m-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                width="160px"
+                height="160px"
+              >
+                <circle id="tl" cx="50" cy="50" r="50" stroke-linecap="round" />
+              </svg>
+              <!-- inside text -->
+              <div
+                id="tl_tire"
+                class="w-[100px] h-[100px] bg-gray-500 rounded-full relative flex bg-red-500 opacity-90"
+              >
+                <div class="text-center m-auto text-2xl text-white font-bold">
+                  35psi
+                </div>
+              </div>
+              <!-- title outside -->
+              <div
+                class="text-center absolute bottom-[-25px] w-full text-[14px] text-white font-bold"
+              >
+                Top left tire
+              </div>
+            </div>
+
+            <div class="flex w-fit h-fit relative">
+              <!-- circle outside -->
+              <!-- <span
+                class="animate-ping absolute inline-flex h-[100px] w-[100px] rounded-full bg-red-400 opacity-100"
+              ></span> -->
+              <svg
+                class="absolute z-20 m-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                width="160px"
+                height="160px"
+              >
+                <circle id="tr" cx="50" cy="50" r="50" stroke-linecap="round" />
+              </svg>
+              <!-- inside text -->
+              <div
+                id="tr_tire"
+                class="w-[100px] h-[100px] bg-green-500 rounded-full opacity-70 flex"
+              >
+                <div class="text-center m-auto text-2xl text-white font-bold">
+                  100psi
+                </div>
+              </div>
+              <div
+                class="text-center absolute bottom-[-24px] w-full text-[14px] text-white font-bold"
+              >
+                Top right tire
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-row justify-between w-[420px] absolute bottom-[70px]"
+          >
+            <div class="flex w-fit h-fit relative">
+              <!-- circle outside -->
+              <!-- <span
+              class="animate-ping absolute inline-flex h-[100px] w-[100px] rounded-full bg-red-400 opacity-100"
+            ></span> -->
+              <svg
+                class="absolute z-20 m-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                width="160px"
+                height="160px"
+              >
+                <circle
+                  id="tbl"
+                  cx="50"
+                  cy="50"
+                  r="50"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <!-- inside text -->
+
+              <div
+                id="bl_tire"
+                class="w-[100px] h-[100px] bg-green-500 rounded-full flex opacity-70"
+              >
+                <div class="text-center m-auto text-2xl text-white font-bold">
+                  100psi
+                </div>
+              </div>
+              <div
+                class="text-center absolute bottom-[-24px] w-full text-[14px] text-white font-bold"
+              >
+                Back right tire
+              </div>
+            </div>
+
+            <div class="flex w-fit h-fit relative">
+              <!-- circle outside -->
+              <!-- <span
+              class="animate-ping absolute inline-flex h-[100px] w-[100px] rounded-full bg-red-400 opacity-100"
+            ></span> -->
+              <svg
+                class="absolute z-20 m-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                width="160px"
+                height="160px"
+              >
+                <circle id="br" cx="50" cy="50" r="50" stroke-linecap="round" />
+              </svg>
+              <!-- inside text -->
+
+              <div
+                id="br_tire"
+                class="w-[100px] h-[100px] bg-red-500 rounded-full flex opacity-70"
+              >
+                <div class="text-center m-auto text-2xl text-white font-bold">
+                  130psi
+                </div>
+              </div>
+              <div
+                class="text-center absolute bottom-[-24px] w-full text-[14px] text-white font-bold"
+              >
+                Back right tire
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </body>
+  <style>
+    .itemBubble {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background-color: #bed2d0;
+      opacity: 0.9;
+      z-index: 20;
+    }
+    .state_text {
+      font-size: medium;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+      font-weight: bold;
+    }
+    .lock {
+      color: red;
+    }
+    .unlock {
+      color: darkkhaki;
+    }
+    .line {
+      height: 2px;
+      width: 50px;
+      background-color: #ffff;
+      border: 0;
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 50%;
+    }
+    circle {
+      fill: none;
+      stroke: rgb(213, 121, 121);
+      stroke-width: 4px;
+      stroke-dasharray: 310;
+      stroke-dashoffset: 150;
+    }
+    circle#tl {
+      stroke-dashoffset: 250;
+    }
+    circle#tr {
+      stroke: rgb(109, 230, 109);
+      stroke-dashoffset: 150;
+    }
+    circle#br {
+      stroke: rgb(198, 111, 67);
+      stroke-dashoffset: 110;
+    }
+    .control_option{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: solid 5px #0d9488;
+      fill: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      opacity: 80;
+    }
+    .control_option.light_option{
+      align-self: flex-start;
+      margin-left: 20px;
+    }
+    .control_option:hover{
+      background-color: #0f766e;
+      opacity: 70;
+      transform: scale(1.1);
+      transition-duration: 100ms;
+      transition-timing-function: ease-out;
+    }
+    #main_control{
+      animation: FadeIn 500ms linear;
+      animation-fill-mode: both;
+    }
+    #main_control .control_option:nth-child(1){
+      animation-delay: 500ms;
+    }
+    #main_control .control_option:nth-child(2){
+      animation-delay: 1s;
+    }
+    #main_control .control_option:nth-child(3){
+      animation-delay: 1.5s;
+    }
+    @keyframes FadeIn { 
+      0% {
+        opacity: 0;
+        transform: scale(.1);
+      }
+    
+      85% {
+        opacity: 1;
+        transform: scale(1.05);
+
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes FadeOut { 
+      0% {
+        transform: scale(1);
+      }
+    
+      85% {
+        opacity: 1;
+        transform: scale(.5);
+
+      }
+      100% {
+        opacity: 0;
+        transform: scale(.01);
+      }
+    }
+  </style>
+  <script type="text/javascript" src="control.js"></script>
 </html>
